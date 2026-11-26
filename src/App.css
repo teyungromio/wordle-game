@@ -1,0 +1,292 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #121213;
+  color: #fff;
+}
+
+.header {
+  width: 100%;
+  max-width: 540px;
+  height: 66px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #3a3a3c;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+.icon-button {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #565758;
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: #3a3a3c;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 22px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: #818384;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.board-row {
+  display: flex;
+  gap: 5px;
+}
+
+.tile {
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #3a3a3c;
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.tile.filled {
+  border-color: #565758;
+  animation: pop 0.1s ease-in-out;
+}
+
+.tile.correct,
+.key.correct {
+  background: #538d4e;
+  border-color: #538d4e;
+}
+
+.tile.present,
+.key.present {
+  background: #b59f3b;
+  border-color: #b59f3b;
+}
+
+.tile.absent,
+.key.absent {
+  background: #3a3a3c;
+  border-color: #3a3a3c;
+}
+
+.tile.reveal {
+  animation: flip 0.5s ease forwards;
+}
+
+.message-area {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  max-width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #fff;
+  color: #121213;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.keyboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.keyboard-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.key {
+  height: 57px;
+  flex: 1;
+  max-width: 43px;
+  border: 0;
+  border-radius: 5px;
+  background: #818384;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.key:hover:not(:disabled) {
+  filter: brightness(1.15);
+}
+
+.key:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.key.special-key {
+  max-width: 70px;
+  flex: 1.5;
+  font-size: 11px;
+}
+
+.key:disabled {
+  cursor: not-allowed;
+}
+
+.game-result {
+  margin: 0 0 15px;
+  text-align: center;
+}
+
+.game-result h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.game-result p {
+  margin: 0 0 14px;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.new-game-button {
+  padding: 12px 25px;
+  border: 0;
+  border-radius: 5px;
+  background: #538d4e;
+  color: white;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.new-game-button:hover {
+  background: #65a85d;
+}
+
+.footer {
+  margin-top: 35px;
+  color: #565758;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 2;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes pop {
+  50% { transform: scale(1.08); }
+}
+
+@keyframes flip {
+  0% { transform: rotateX(0); }
+  45% { transform: rotateX(90deg); }
+  55% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+@media (max-width: 420px) {
+  .tile {
+    width: min(16vw, 58px);
+    height: min(16vw, 58px);
+    font-size: 27px;
+  }
+
+  .key {
+    height: 52px;
+    font-size: 14px;
+  }
+
+  .key.special-key {
+    font-size: 10px;
+  }
+
+  .header h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 350px) {
+  .tile {
+    width: 48px;
+    height: 48px;
+  }
+
+  .key {
+    height: 46px;
+    font-size: 12px;
+  }
+}
